@@ -1,5 +1,5 @@
-// render-functions.js
 import SimpleLightbox from 'simplelightbox';
+import iziToast from 'izitoast';
 
 let lightbox;
 
@@ -61,5 +61,5 @@ export const hideLoader = () => {
 };
 
 export const showMessage = message => {
-  iziToast.error({ title: 'Error', message });
+  iziToast.error({ title: 'Error', message, position: 'topRight' });
 };
