@@ -3,7 +3,7 @@ import { renderImages, showLoader, hideLoader } from './js/render-functions.js';
 
 const form = document.querySelector('.form');
 
-form.addEventListener('submit', async event => {
+form.addEventListener('submit', event => {
   event.preventDefault();
   const query = event.target.elements['search-text'].value.trim();
 
@@ -12,13 +12,16 @@ form.addEventListener('submit', async event => {
   }
 
   showLoader();
-  try {
-    const images = await fetchImages(query);
-    renderImages(images);
-  } catch (error) {
-    console.error('Error fetching images:', error);
-    showMessage('Failed to fetch images. Please try again later.');
-  } finally {
+
+  fetchImages(query, (error, images) => {
     hideLoader();
-  }
+
+    if (error) {
+      console.error('Error fetching images:', error);
+      showMessage('Failed to fetch images. Please try again later.');
+      return;
+    }
+
+    renderImages(images);
+  });
 });
