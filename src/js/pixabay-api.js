@@ -13,6 +13,10 @@ export const fetchImages = (query, callback) => {
       },
     })
     .then(response => {
+      if (response.status !== 200) {
+        callback(new Error('Failed to fetch images.'));
+        return;
+      }
       callback(null, response.data.hits);
     })
     .catch(error => {
