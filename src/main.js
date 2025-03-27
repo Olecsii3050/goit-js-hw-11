@@ -19,7 +19,7 @@ form.addEventListener('submit', event => {
 
     if (error) {
       console.error('Error fetching images:', error);
-      showMessage('Failed to fetch images. Please try again later.'); // Використання iziToast для показу повідомлення
+      showMessage('Failed to fetch images. Please try again later.');
       return;
     }
 
